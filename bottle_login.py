@@ -47,13 +47,13 @@ class LoginPlugin(object):
     def login_user(user_id):
         session = request.environ.get('beaker.session')
         session['user_id'] = user_id
-        session.save(response.set_cookie)
+        session.save()
 
     @staticmethod
     def logout_user():
         session = request.environ.get('beaker.session')
         session.pop('user_id', None)
-        session.save(response.set_cookie)
+        session.save()
 
     def login_required(self, url=None):
         def decorator(callback):
